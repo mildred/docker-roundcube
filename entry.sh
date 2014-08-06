@@ -18,9 +18,9 @@ if [[ -n $LANG ]]; then
   echo "\$rcmail_config['language'] = '$LANG';" >>/etc/roundcube/main.inc.php
 fi
 
-if [[ -n $MAIL_PORT_443_TCP ]]; then
-  echo "\$rcmail_config['default_port'] = $MAIL_PORT_443_TCP_PORT;"           >>/etc/roundcube/main.inc.php
-  echo "\$rcmail_config['default_host'] = \"tls://$MAIL_PORT_443_TCP_ADDR\";" >>/etc/roundcube/main.inc.php
+if [[ -n $MAIL_PORT_143_TCP ]]; then
+  echo "\$rcmail_config['default_port'] = $MAIL_PORT_143_TCP_PORT;"           >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['default_host'] = \"tls://$MAIL_PORT_143_TCP_ADDR\";" >>/etc/roundcube/main.inc.php
 fi
 
 if [[ -n $MAIL_PORT_587_TCP ]]; then

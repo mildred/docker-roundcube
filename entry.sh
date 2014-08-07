@@ -31,6 +31,13 @@ if [[ -n $MAIL_PORT_587_TCP ]]; then
   echo "\$rcmail_config['smtp_auth_type'] = \"PLAIN\";"                         >>/etc/roundcube/main.inc.php
 fi
 
+if [[ -n $MAIL_PORT_4190_TCP ]]; then
+  echo "\$rcmail_config['managesieve_host'] = \"$MAIL_PORT_4190_TCP_ADDR\";" >>/etc/roundcube/plugins/managesieve/config.inc.php
+  echo "\$rcmail_config['managesieve_port'] = $MAIL_PORT_4190_TCP_PORT;"     >>/etc/roundcube/plugins/managesieve/config.inc.php
+  echo "\$rcmail_config['sieverules_host'] = \"$MAIL_PORT_4190_TCP_ADDR\";" >>/etc/roundcube/plugins/sieverules/config.inc.php
+  echo "\$rcmail_config['sieverules_port'] = $MAIL_PORT_4190_TCP_PORT;"     >>/etc/roundcube/plugins/sieverules/config.inc.php
+fi
+
 echo "\$rcmail_config['plugins'] = array('managesieve', 'http_authentication', 'sieverules', 'help', 'newmail_notifier');" >>/etc/roundcube/main.inc.php
 
 # Make docker stop work correctly by ensuring signals get to apache2

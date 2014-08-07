@@ -31,6 +31,8 @@ if [[ -n $MAIL_PORT_587_TCP ]]; then
   echo "\$rcmail_config['smtp_auth_type'] = \"PLAIN\";"                         >>/etc/roundcube/main.inc.php
 fi
 
+echo "\$rcmail_config['plugins'] = array('managesieve', 'http_authentication', 'sieverules', 'help', 'newmail_notifier');" >>/etc/roundcube/main.inc.php
+
 # Make docker stop work correctly by ensuring signals get to apache2
 # process and avoid trying to change limits which produces errors under
 # docker.

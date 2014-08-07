@@ -24,8 +24,11 @@ if [[ -n $MAIL_PORT_143_TCP ]]; then
 fi
 
 if [[ -n $MAIL_PORT_587_TCP ]]; then
-  echo "\$rcmail_config['smtp_port']   = $MAIL_PORT_587_TCP_PORT;"           >>/etc/roundcube/main.inc.php
-  echo "\$rcmail_config['smtp_server'] = \"tls://$MAIL_PORT_587_TCP_ADDR\";" >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['smtp_port']      = $MAIL_PORT_587_TCP_PORT;"           >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['smtp_server']    = \"tls://$MAIL_PORT_587_TCP_ADDR\";" >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['smtp_user']      = \"%u\";"                            >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['smtp_pass']      = \"%p\";"                            >>/etc/roundcube/main.inc.php
+  echo "\$rcmail_config['smtp_auth_type'] = \"PLAIN\";"                         >>/etc/roundcube/main.inc.php
 fi
 
 # Make docker stop work correctly by ensuring signals get to apache2

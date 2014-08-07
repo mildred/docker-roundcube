@@ -5,7 +5,7 @@ RUN echo "deb http://http.debian.net/debian wheezy-backports main" >/etc/apt/sou
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y daemontools daemontools-run
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -t wheezy-backports --force-yes roundcube roundcube-sqlite3 curl php5-ldap
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -t wheezy-backports --force-yes roundcube roundcube-sqlite3 curl php5-ldap roundcube-plugins roundcube-plugins-extra
 
 # Debug
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y net-tools netcat procps man nano lsof less debconf-utils

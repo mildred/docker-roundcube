@@ -32,13 +32,16 @@ if [[ -n $MAIL_PORT_587_TCP ]]; then
 fi
 
 if [[ -n $MAIL_PORT_4190_TCP ]]; then
-  echo "\$rcmail_config['managesieve_host'] = \"$MAIL_PORT_4190_TCP_ADDR\";" >>/etc/roundcube/plugins/managesieve/config.inc.php
-  echo "\$rcmail_config['managesieve_port'] = $MAIL_PORT_4190_TCP_PORT;"     >>/etc/roundcube/plugins/managesieve/config.inc.php
-  echo "\$rcmail_config['sieverules_host'] = \"$MAIL_PORT_4190_TCP_ADDR\";" >>/etc/roundcube/plugins/sieverules/config.inc.php
-  echo "\$rcmail_config['sieverules_port'] = $MAIL_PORT_4190_TCP_PORT;"     >>/etc/roundcube/plugins/sieverules/config.inc.php
+  echo "<?php \$rcmail_config['managesieve_host'] = \"$MAIL_PORT_4190_TCP_ADDR\"; ?>" >>/etc/roundcube/plugins/managesieve/config.inc.php
+  echo "<?php \$rcmail_config['managesieve_port'] = $MAIL_PORT_4190_TCP_PORT;     ?>" >>/etc/roundcube/plugins/managesieve/config.inc.php
+  echo "\$rcmail_config['sieverules_host']          = \"$MAIL_PORT_4190_TCP_ADDR\";" >>/etc/roundcube/plugins/sieverules/config.inc.php
+  echo "\$rcmail_config['sieverules_port']          = $MAIL_PORT_4190_TCP_PORT;"     >>/etc/roundcube/plugins/sieverules/config.inc.php
+  echo "\$rcmail_config['sieverules_usetls']        = true;"                         >>/etc/roundcube/plugins/sieverules/config.inc.php 
+  echo "\$rcmail_config['sieverules_adveditor']     = 1;"                            >>/etc/roundcube/plugins/sieverules/config.inc.php
+  echo "\$rcmail_config['sieverules_multiplerules'] = true;"                         >>/etc/roundcube/plugins/sieverules/config.inc.php
 fi
 
-echo "\$rcmail_config['plugins'] = array('managesieve', 'http_authentication', 'sieverules', 'help', 'newmail_notifier');" >>/etc/roundcube/main.inc.php
+echo "\$rcmail_config['plugins'] = array('http_authentication', 'sieverules', 'help', 'newmail_notifier');" >>/etc/roundcube/main.inc.php
 
 # Make docker stop work correctly by ensuring signals get to apache2
 # process and avoid trying to change limits which produces errors under

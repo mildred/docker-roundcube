@@ -41,7 +41,7 @@ if [[ -n $MAIL_PORT_4190_TCP ]]; then
   echo "\$rcmail_config['sieverules_multiplerules'] = true;"                         >>/etc/roundcube/plugins/sieverules/config.inc.php
 fi
 
-echo "\$rcmail_config['plugins'] = array('http_authentication', 'sieverules', 'help', 'newmail_notifier');" >>/etc/roundcube/main.inc.php
+echo "\$rcmail_config['plugins'] = array('http_authentication', 'sieverules', 'help', 'newmail_notifier', 'archive');" >>/etc/roundcube/main.inc.php
 
 # Make docker stop work correctly by ensuring signals get to apache2
 # process and avoid trying to change limits which produces errors under

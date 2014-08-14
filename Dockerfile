@@ -18,7 +18,10 @@ RUN { \
   DEBIAN_FRONTEND=noninteractive dpkg-reconfigure roundcube-core; \
   sed -i -re '/^\s*DocumentRoot/s, /.*, /var/lib/roundcube,' \
     /etc/apache2/sites-available/default-ssl; \
+  sed -i -re '/^\s*DocumentRoot/s, /.*, /var/lib/roundcube,' \
+    /etc/apache2/sites-available/default; \
   a2ensite default-ssl; \
+  a2ensite default; \
   a2enmod ssl; \
   php5enmod mcrypt; \
   cp /etc/roundcube/main.inc.php /etc/roundcube/main.inc.default.php; \
@@ -29,6 +32,7 @@ RUN { \
 VOLUME /var/lib/dbconfig-common/sqlite3/roundcube
 
 ADD entry.sh /
+EXPOSE 80
 EXPOSE 443
 CMD ["bash", "/entry.sh"]
 
